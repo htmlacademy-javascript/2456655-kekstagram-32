@@ -1,4 +1,6 @@
-const findStringLength = (str, maxLength) => str.length <= maxLength;
+const findStringLength = function (str, maxLength) {
+  return String.length <= maxLength;
+};
 
 // Строка короче 20 символов
 console.log(findStringLength('проверяемая строка', 20)); // true
