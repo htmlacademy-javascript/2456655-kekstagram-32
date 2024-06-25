@@ -1,10 +1,5 @@
-const findStringLength = function (str, maxLength) {
-  return String.length <= maxLength;
-};
+const isStringShorter20 = (string, length20) => string.length <= length20;
+const isStringLength18 = (string, length18) => string.length === length18;
+const isStringLonger10 = (string, length10) => string.length >= length10;
 
-// Строка короче 20 символов
-console.log(findStringLength('проверяемая строка', 20)); // true
-// Длина строки ровно 18 символов
-console.log(findStringLength('проверяемая строка', 18)); // true
-// Строка длиннее 10 символов
-console.log(findStringLength('проверяемая строка', 10)); // false
+void (isStringShorter20, isStringLength18, isStringLonger10);
