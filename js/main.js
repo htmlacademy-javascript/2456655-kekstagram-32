@@ -1,52 +1,98 @@
-/* createObj(array [25] сгенерированных объектов - фото)
+const PICTURE_COUNT = 25;
+const LIKES_MIN = 15;
+const LIKES_MAX = 200;
+const COMMENTS_MIN = 0;
+const COMMENTS_MAX = 30;
+const AVATAR_MIN = 1;
+const AVATAR_MAX = 6;
 
-obj {
-getPhotoId (random, min 1 - max 25, не повторяется);
+const ARRAY_MESSAGES = [
+  'Всё отлично!',
+  'В целом всё неплохо. Но не всё.',
+  'Когда вы делаете фотографию, хорошо бы убирать палец из кадра. В конце концов это просто непрофессионально.',
+  'Моя бабушка случайно чихнула с фотоаппаратом в руках и у неё получилась фотография лучше.',
+  'Я поскользнулся на банановой кожуре и уронил фотоаппарат на кота и у меня получилась фотография лучше.',
+  'Лица у людей на фотке перекошены, как будто их избивают. Как можно было поймать такой неудачный момент?!'
+];
 
-getUrl (photos/{{i}}.jpg, где i - min 1 - max 25, не повторяется);
+const ARRAY_DESCRIPTIONS = [
+  'Наконец-то получилось заснять эту красоту.',
+  'Удачный кадр, супер!',
+  'Повезло с моделью.',
+  'Как красиво!',
+  'Дайте координаты локации',
+  'Здравствуй, море! Я скучала!',
+  'Поделитесь рецептом.',
+  'Что-то новенькое, интересно!',
+  'Крутое party, отлично провели время.',
+  'Самый лучший отдых.'
+];
 
-getDescription
-  const arrayDescriptions = [
-    'Наконец-то получилось заснять эту красоту.',
-    'Удачный кадр, супер!',
-    'Повезло с моделью.',
-    'Как красиво!',
-    'Дайте координаты локации',
-    'Здравствуй, море! Я скучала!'
-    'Поделитесь рецептом.'
-    'Что-то новенькое, интересно!'
-    'Крутое party, отлично провели время.'
-    'Самый лучший отдых.'
-    ];
+const ARRAY_NAMES = [
+  'Маша',
+  'Света',
+  'Саша',
+  'Женя',
+  'Лена',
+  'Петя',
+  'Миша',
+  'Сергей',
+  'Катя',
+  'Лиза',
+  'Коля',
+  'Даша',
+  'Игорь'
+];
 
-getLikes (random, min 15 - max 200);
+const getRandomInteger = (a, b) => {
+  const lower = Math.ceil(Math.min(a, b));
+  const upper = Math.floor(Math.max(a, b));
+  const result = Math.random() * (upper - lower + 1) + lower;
+  return Math.floor(result);
+};
 
-getComments (comments min 0 - max 30) {
-  сommentId (random, не повторяется),
-  avatar (img/avatar-{{случайное число от 1 до 6}}.svg),
-  message (random, min 1 - max 2)
-    const arrayMessages = [
-      'Всё отлично!',
-      'В целом всё неплохо. Но не всё.',
-      'Когда вы делаете фотографию, хорошо бы убирать палец из кадра. В конце концов это просто непрофессионально.',
-      'Моя бабушка случайно чихнула с фотоаппаратом в руках и у неё получилась фотография лучше.',
-      'Я поскользнулся на банановой кожуре и уронил фотоаппарат на кота и у меня получилась фотография лучше.',
-      'Лица у людей на фотке перекошены, как будто их избивают. Как можно было поймать такой неудачный момент?!'
-      ];
-  name (random)
-    const arrayNames = [
-      'Катя',
-      'Маша',
-      'Саша',
-      'Дима',
-      'Женя',
-      'Света',
-      'Даша',
-      'Петя',
-      'Гриша',
-      'Миша',
-      'Аня',
-      ];
-  }
-}
-*/
+const getRandomArrayElement = (items) =>
+  items[getRandomInteger(0, items.length - 1)];
+
+const createIdGenerator = () => {
+  let numId = 0;
+
+  return() => {
+    numId += 1;
+    return numId;
+  };
+};
+
+const getRandomId = createIdGenerator();
+
+const createMessage = () => Array.from(
+  {length: getRandomInteger(1, 2)},
+  (_, index) => getRandomArrayElement(ARRAY_MESSAGES),
+);
+
+const createComment = () => ({
+  id: getRandomId(),
+  avatar: 'img/avatar-${getRandomInteger(AVATAR_MIN, AVATAR_MAX)}.svg',
+  message: createMessage(),
+  name: getRandomArrayElement(ARRAY_NAMES),
+});
+
+const createPicture = (index) => ({
+  id: index,
+  url: 'photos/${index}.jpg',
+  description: getRandomArrayElement(ARRAY_DESCRIPTIONS),
+  likes: getRandomInteger(LIKES_MIN, LIKES_MAX),
+  comments: Array.from(
+    {length: getRandomInteger(COMMENTS_MIN, COMMENTS_MAX)},
+    createComment
+  ),
+});
+
+const getPictures = () => Array.from(
+  {length: PICTURE_COUNT},
+  (_, index) => createPicture(index + 1)
+);
+
+getPictures();
+
+console.log(getPictures());
