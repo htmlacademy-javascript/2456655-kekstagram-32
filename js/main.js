@@ -72,14 +72,14 @@ const createMessage = () => Array.from(
 
 const createComment = () => ({
   id: getRandomId(),
-  avatar: 'img/avatar-${getRandomInteger(AVATAR_MIN, AVATAR_MAX)}.svg',
+  avatar: `img/avatar-${getRandomInteger(AVATAR_MIN, AVATAR_MAX)}.svg`,
   message: createMessage(),
   name: getRandomArrayElement(ARRAY_NAMES),
 });
 
 const createPicture = (index) => ({
   id: index,
-  url: 'photos/${index}.jpg',
+  url: `photos/${index}.jpg`,
   description: getRandomArrayElement(ARRAY_DESCRIPTIONS),
   likes: getRandomInteger(LIKES_MIN, LIKES_MAX),
   comments: Array.from(
