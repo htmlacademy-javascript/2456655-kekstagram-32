@@ -1,3 +1,5 @@
+import {getRandomInteger, getRandomArrayElement, createIdGenerator} from './util.js';
+
 const PICTURE_COUNT = 25;
 const LIKES_MIN = 15;
 const LIKES_MAX = 200;
@@ -44,24 +46,6 @@ const ARRAY_NAMES = [
   'Игорь'
 ];
 
-const getRandomInteger = (a, b) => {
-  const lower = Math.ceil(Math.min(a, b));
-  const upper = Math.floor(Math.max(a, b));
-  const result = Math.random() * (upper - lower + 1) + lower;
-  return Math.floor(result);
-};
-
-const getRandomArrayElement = (items) =>
-  items[getRandomInteger(0, items.length - 1)];
-
-const createIdGenerator = () => {
-  let numId = 0;
-
-  return() => {
-    numId += 1;
-    return numId;
-  };
-};
 
 const getRandomId = createIdGenerator();
 
@@ -93,6 +77,5 @@ const getPictures = () => Array.from(
   (_, index) => createPicture(index + 1),
 );
 
-getPictures();
 
 export {getPictures};
