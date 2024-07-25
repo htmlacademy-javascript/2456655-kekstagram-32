@@ -17,7 +17,7 @@ const createComment = ({ avatar, name, message }) => {
 
   comment.querySelector('.social__picture').src = avatar;
   comment.querySelector('.social__picture').alt = name;
-  comment.querySelector('.social__picture').textContent = message;
+  comment.querySelector('.social__text').textContent = message;
 
   return comment;
 };
