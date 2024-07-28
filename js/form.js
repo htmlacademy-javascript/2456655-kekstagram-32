@@ -83,6 +83,14 @@ const onFormSubmit = (evt) => {
 
 pristine.addValidator(
   hashtagField,
+  hasUniqueTags,
+  ErrorText.NOT_UNIQUE,
+  1,
+  true
+);
+
+pristine.addValidator(
+  hashtagField,
   hasValidTags,
   ErrorText.INVALID_PATTERN,
   2,
