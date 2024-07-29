@@ -67,9 +67,7 @@ const modalElement = document.querySelector('.img-upload');
 const imageElement = modalElement.querySelector('.img-upload__preview img');
 const effectsElement = modalElement.querySelector('.effects');
 const sliderElement = modalElement.querySelector('.effect-level__slider');
-const sliderContainerElement = modalElement.querySelector(
-  '.img-upload__effect-level'
-);
+const sliderContainerElement = modalElement.querySelector('.img-upload__effect-level');
 const effectLevelElement = modalElement.querySelector('.effect-level__value');
 
 let chosenEffect = Effect.DEFAULT;
@@ -100,7 +98,7 @@ const onSliderUpdate = () => {
   setImageStyle();
 };
 
-const createSlider = ({ min, max, step }) => {
+const createSlider = ({min, max, step}) => {
   noUiSlider.create(sliderElement, {
     range: { min, max },
     step,
@@ -115,9 +113,9 @@ const createSlider = ({ min, max, step }) => {
   hideSlider();
 };
 
-const updateSlider = ({ min, max, step}) => {
+const updateSlider = ({min, max, step}) => {
   sliderElement.noUiSlider.updateOptions ({
-    range: { min, max },
+    range: {min, max},
     step,
     start: max,
   });
@@ -151,4 +149,4 @@ const init = () => {
   effectsElement.addEventListener('change', onEffectChange);
 };
 
-export { init, reset };
+export {init, reset};
