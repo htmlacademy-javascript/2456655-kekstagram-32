@@ -1,3 +1,10 @@
+import { resetScale } from './scale.js';
+import {
+  init as initEffect,
+  reset as resetEffect
+} from './effects.js';
+
+
 const MAX_HASHTAG_COUNT = 5;
 const VALID_SYMBOLS = /^#[a-zа-яё0-9]{1,19}$/i;
 const ErrorText = {
@@ -17,7 +24,7 @@ const commentField = form.querySelector('.text__description');
 const pristine = new Pristine(form, {
   classTo: 'img-upload__field-wrapper',
   errorTextParent: 'img-upload__field-wrapper',
-  errorTextCLass: 'img-upload__field-wrapper__error'
+  errorTextCLass: 'img-upload__field-wrapper--error'
 });
 
 const showModal = () => {
@@ -28,6 +35,8 @@ const showModal = () => {
 
 const hideModal = () => {
   form.reset();
+  resetScale();
+  resetEffect();
   pristine.reset();
   overlay.classList.add('hidden');
   body.classList.remove('modal-open');
@@ -74,16 +83,16 @@ const onFormSubmit = (evt) => {
 
 pristine.addValidator(
   hashtagField,
-  hasValidTags,
-  ErrorText.INVALID_PATTERN,
+  hasUniqueTags,
+  ErrorText.NOT_UNIQUE,
   1,
   true
 );
 
 pristine.addValidator(
   hashtagField,
-  hasUniqueTags,
-  ErrorText.NOT_UNIQUE,
+  hasValidTags,
+  ErrorText.INVALID_PATTERN,
   2,
   true
 );
@@ -99,3 +108,4 @@ pristine.addValidator(
 fileField.addEventListener('change', onFileInputChange);
 cancelButton.addEventListener('click', onCancelButtonClick);
 form.addEventListener('submit', onFormSubmit);
+initEffect();
