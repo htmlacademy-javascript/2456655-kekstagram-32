@@ -12,7 +12,7 @@ const pictures = [];
 const sortRandomly = () => Math.random() - 0.5;
 
 const sortByComments = (pictureA, pictureB) =>
-  pictureB.comments.length = pictureA.comments.length;
+  pictureB.comments.length - pictureA.comments.length;
 
 const getFilteredPictures = () => {
   switch (currentFilter) {
