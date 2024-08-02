@@ -1,9 +1,9 @@
 const successMessage = document
   .querySelector('#success')
-  .textContent.querySelector('.success');
+  .content.querySelector('.success');
 const errorMessage = document
   .querySelector('#error')
-  .textContent.querySelector('.error');
+  .content.querySelector('.error');
 const body = document.querySelector('body');
 
 function hideMessage() {
