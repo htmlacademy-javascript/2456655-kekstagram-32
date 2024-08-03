@@ -86,7 +86,7 @@ const hasUniqueTags = (value) => {
 };
 
 function onDocumentKeydown(evt) {
-  if (evt.key === 'Escape' && !isTextFieldFocused() && !isErrorMessageShown) {
+  if (evt.key === 'Escape' && !isTextFieldFocused() && !isErrorMessageShown()) {
     evt.preventDefault();
     hideModal();
   }
