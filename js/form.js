@@ -3,7 +3,6 @@ import {
   init as initEffect,
   reset as resetEffect
 } from './effects.js';
-import { preview } from 'vite';
 
 const MAX_HASHTAG_COUNT = 5;
 const VALID_SYMBOLS = /^#[a-zа-яё0-9]{1,19}$/i;
