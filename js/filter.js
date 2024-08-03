@@ -6,8 +6,8 @@ const Filter = {
 };
 
 const filterElement = document.querySelector('.img-filters');
-const currentFilter = Filter.DEFAULT;
-const pictures = [];
+let currentFilter = Filter.DEFAULT;
+let pictures = [];
 
 const sortRandomly = () => Math.random() - 0.5;
 
