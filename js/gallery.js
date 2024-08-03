@@ -3,7 +3,7 @@ import { showBigPicture } from './big-picture.js';
 
 const container = document.querySelector('.pictures');
 
-const pictures = [];
+let pictures = [];
 
 const onContainerClick = (evt) => {
   const thumbnail = evt.target.closest('[data-thumbnail-id]');
