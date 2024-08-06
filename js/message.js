@@ -30,7 +30,7 @@ function onDocumentKeydown(evt) {
   }
 }
 
-function hideMessageHandle() {
+function onCloseButtonClick() {
   hideMessage();
 }
 
@@ -40,7 +40,7 @@ const showMessage = (messageElement, closeButtonClass) => {
   body.addEventListener('click', onBodyClick);
   messageElement
     .querySelector(closeButtonClass)
-    .addEventListener('click', hideMessageHandle);
+    .addEventListener('click', onCloseButtonClick);
 };
 
 const showSuccessMessage = () => {
